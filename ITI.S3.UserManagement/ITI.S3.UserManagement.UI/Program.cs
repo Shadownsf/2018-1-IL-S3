@@ -6,11 +6,10 @@ namespace ITI.S3.UserManagement.UI
     {
         static void Main( string[] args )
         {
-            User john = new User();
-            john.UserName = "John";
+            User john = new User( "John", "ù**^$^rzer" );
 
-            john.SetPassword( "ù**^$^rzer" );
-            if( john.PasswordMatch( "wrong pass" ) )
+            Console.WriteLine( "User name: " + john.UserName );
+            if( john.PasswordMatch( "ù**^$^rzer" ) )
             {
                 Console.WriteLine( "Password matched" );
             }
