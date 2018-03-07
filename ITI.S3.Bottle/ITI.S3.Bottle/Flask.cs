@@ -4,11 +4,13 @@ namespace ITI.S3.Bottle
 {
     public class Flask
     {
-        int _maxCapacity;
+        readonly int _maxCapacity;
         int _volume;
+        static int _totalCount;
 
         public Flask( int maxCapacity )
         {
+            _totalCount++;
             _maxCapacity = maxCapacity;
             _volume = 0;
         }
@@ -51,6 +53,11 @@ namespace ITI.S3.Bottle
         public bool IsFull
         {
             get { return _volume == _maxCapacity; }
+        }
+
+        public static int TotalCount
+        {
+            get { return _totalCount; }
         }
     }
 }

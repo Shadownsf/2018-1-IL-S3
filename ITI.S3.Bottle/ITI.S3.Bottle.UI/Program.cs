@@ -27,16 +27,25 @@ namespace ITI.S3.Bottle.UI
 
             Console.WriteLine( "Calls flask.Fill()" );
             flask.Fill();
+
             DisplayFlask( flask );
+
+            new Flask( 2 );
+            new Flask( 3 );
+            Console.WriteLine( "Flasks created: {0}", Flask.TotalCount );
+
+            new Flask( 1 );
+            new Flask( 4 );
+            Console.WriteLine( "Flasks created: {0}", Flask.TotalCount );
         }
 
-        static void DisplayFlask( Flask flask )
+        static void DisplayFlask( Flask @this )
         {
             Console.WriteLine( "==================================" );
-            Console.WriteLine( "Volume: {0}", flask.Volume );
-            Console.WriteLine( "Max capacity: {0}", flask.MaxCapacity );
-            Console.WriteLine( "Is full: {0}", flask.IsFull );
-            Console.WriteLine( "Is empty: {0}", flask.IsEmpty );
+            Console.WriteLine( "Volume: {0}", @this.Volume );
+            Console.WriteLine( "Max capacity: {0}", @this.MaxCapacity );
+            Console.WriteLine( "Is full: {0}", @this.IsFull );
+            Console.WriteLine( "Is empty: {0}", @this.IsEmpty );
             Console.WriteLine( "==================================" );
         }
     }
