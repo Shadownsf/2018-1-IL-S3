@@ -33,14 +33,24 @@ namespace ITI.S3.Bottle
             _volume = 0;
         }
 
-        public int GetVolume()
+        public int MaxCapacity
         {
-            return _volume;
+            get { return _maxCapacity; }
         }
 
-        public int GetMaxCapacity()
+        public int Volume
         {
-            return _maxCapacity;
+            get { return _volume; }
+        }
+
+        public bool IsEmpty
+        {
+            get { return _volume == 0; }
+        }
+
+        public bool IsFull
+        {
+            get { return _volume == _maxCapacity; }
         }
     }
 }

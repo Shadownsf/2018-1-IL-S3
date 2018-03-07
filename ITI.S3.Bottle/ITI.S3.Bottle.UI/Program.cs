@@ -32,8 +32,12 @@ namespace ITI.S3.Bottle.UI
 
         static void DisplayFlask( Flask flask )
         {
-            Console.WriteLine( "Volume: {0}", flask.GetVolume() );
-            Console.WriteLine( "Max capacity: {0}", flask.GetMaxCapacity() );
+            Console.WriteLine( "==================================" );
+            Console.WriteLine( "Volume: {0}", flask.Volume );
+            Console.WriteLine( "Max capacity: {0}", flask.MaxCapacity );
+            Console.WriteLine( "Is full: {0}", flask.IsFull );
+            Console.WriteLine( "Is empty: {0}", flask.IsEmpty );
+            Console.WriteLine( "==================================" );
         }
     }
 }
