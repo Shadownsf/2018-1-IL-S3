@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITI.S3.Bottle", "ITI.S3.Bottle\ITI.S3.Bottle.csproj", "{072CA72C-CE6D-4E91-961C-E9C060528CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITI.S3.Bottle", "ITI.S3.Bottle\ITI.S3.Bottle.csproj", "{072CA72C-CE6D-4E91-961C-E9C060528CC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITI.S3.Bottle.UI", "ITI.S3.Bottle.UI\ITI.S3.Bottle.UI.csproj", "{0263EBEC-F06A-42FD-AF4C-EA9F6832D611}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITI.S3.Bottle.UI", "ITI.S3.Bottle.UI\ITI.S3.Bottle.UI.csproj", "{0263EBEC-F06A-42FD-AF4C-EA9F6832D611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITI.S3.Bottle.Tests", "ITI.S3.Bottle.Tests\ITI.S3.Bottle.Tests.csproj", "{963D297D-85C2-42DF-9F7C-E8D24D06FD50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0263EBEC-F06A-42FD-AF4C-EA9F6832D611}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0263EBEC-F06A-42FD-AF4C-EA9F6832D611}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0263EBEC-F06A-42FD-AF4C-EA9F6832D611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{963D297D-85C2-42DF-9F7C-E8D24D06FD50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{963D297D-85C2-42DF-9F7C-E8D24D06FD50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{963D297D-85C2-42DF-9F7C-E8D24D06FD50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{963D297D-85C2-42DF-9F7C-E8D24D06FD50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
