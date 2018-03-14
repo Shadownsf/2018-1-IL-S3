@@ -10,6 +10,7 @@ namespace ITI.S3.Bottle
 
         public Flask( int maxCapacity )
         {
+            if( maxCapacity <= 0 ) throw new ArgumentException( "The max capacity must be greater than 0.", nameof( maxCapacity ) );
             _totalCount++;
             _maxCapacity = maxCapacity;
             _volume = 0;
@@ -17,6 +18,7 @@ namespace ITI.S3.Bottle
 
         public void Fill( int volume )
         {
+            if( volume < 0 ) throw new ArgumentException( "The volume must be greater or equal to 0.", nameof( MaxCapacity ) );
             _volume = Math.Min( _volume + volume, _maxCapacity );
         }
 
