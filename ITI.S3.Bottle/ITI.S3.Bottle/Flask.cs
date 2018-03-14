@@ -18,7 +18,7 @@ namespace ITI.S3.Bottle
 
         public void Fill( int volume )
         {
-            if( volume < 0 ) throw new ArgumentException( "The volume must be greater or equal to 0.", nameof( MaxCapacity ) );
+            if( volume < 0 ) throw new ArgumentException( "The volume must be greater or equal to 0.", nameof( volume ) );
             _volume = Math.Min( _volume + volume, _maxCapacity );
         }
 
