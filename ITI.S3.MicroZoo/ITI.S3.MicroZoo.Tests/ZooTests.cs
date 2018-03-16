@@ -59,5 +59,26 @@ namespace ITI.S3.MicroZoo.Tests
             Assert.That( sut.FindCat( "Marie" ), Is.SameAs( marie ) );
             Assert.That( sut.FindCat( "Denis" ), Is.SameAs( denis ) );
         }
+
+        [Test]
+        public void rename_animals()
+        {
+            Zoo sut = new Zoo();
+            Cat cat1 = sut.CreateCat( "Robert" );
+            Cat cat2 = sut.CreateCat( "Marie" );
+            Bird bird1 = sut.CreateBird( "Pierre" );
+            Bird bird2 = sut.CreateBird( "Titi" );
+
+            cat1.Name = "Georges";
+            bird1.Name = "Alban";
+
+            Assert.That( cat1.Name, Is.EqualTo( "Georges" ) );
+            Assert.That( bird1.Name, Is.EqualTo( "Alban" ) );
+
+            Assert.That( sut.FindCat( "Georges" ), Is.SameAs( cat1 ) );
+            Assert.That( sut.FindBird( "Alban" ), Is.SameAs( bird1 ) );
+            Assert.Throws<ArgumentException>( () => sut.FindCat( "Robert" ) );
+            Assert.Throws<ArgumentException>( () => sut.FindBird( "Pierre" ) );
+        }
     }
 }
