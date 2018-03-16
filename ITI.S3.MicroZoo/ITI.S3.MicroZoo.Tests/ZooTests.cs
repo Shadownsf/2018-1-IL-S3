@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace ITI.S3.MicroZoo.Tests
 {
@@ -30,6 +31,33 @@ namespace ITI.S3.MicroZoo.Tests
             Assert.That( sut.FindBird( "Pierre" ), Is.SameAs( pierre ) );
             Assert.That( sut.FindBird( "Jean" ), Is.SameAs( jean ) );
             Assert.That( sut.FindBird( "Titi" ), Is.SameAs( titi ) );
+        }
+
+        [Test]
+        public void create_some_cats()
+        {
+            Zoo sut = new Zoo();
+
+            Cat robert = sut.CreateCat( "Robert" );
+            Cat marie = sut.CreateCat( "Marie" );
+            Cat denis = sut.CreateCat( "Denis" );
+
+            Assert.That( robert.Name, Is.EqualTo( "Robert" ) );
+            Assert.That( marie.Name, Is.EqualTo( "Marie" ) );
+            Assert.That( denis.Name, Is.EqualTo( "Denis" ) );
+        }
+
+        [Test]
+        public void find_cat_by_name()
+        {
+            Zoo sut = new Zoo();
+            Cat robert = sut.CreateCat( "Robert" );
+            Cat marie = sut.CreateCat( "Marie" );
+            Cat denis = sut.CreateCat( "Denis" );
+
+            Assert.That( sut.FindCat( "Robert" ), Is.SameAs( robert ) );
+            Assert.That( sut.FindCat( "Marie" ), Is.SameAs( marie ) );
+            Assert.That( sut.FindCat( "Denis" ), Is.SameAs( denis ) );
         }
     }
 }
