@@ -8,6 +8,7 @@ namespace ITI.S3.MicroZoo
         readonly Dictionary<string, Bird> _birds;
         readonly Dictionary<string, Cat> _cats;
         readonly Random _random;
+        readonly ZooOptions _options;
 
         internal List<Bird> Birds
         {
@@ -20,10 +21,17 @@ namespace ITI.S3.MicroZoo
         }
 
         public Zoo()
+            : this( null )
+        {
+        }
+
+        public Zoo( ZooOptions options )
         {
             _birds = new Dictionary<string, Bird>();
             _cats = new Dictionary<string, Cat>();
             _random = new Random();
+            // _options = options != null ? options : new ZooOptions();
+            _options = options ?? new ZooOptions();
         }
 
         public Bird CreateBird( string name )
@@ -82,6 +90,11 @@ namespace ITI.S3.MicroZoo
         {
             foreach( Cat cat in _cats.Values ) cat.Update();
             foreach( Bird bird in _birds.Values ) bird.Update();
+        }
+
+        public ZooOptions Options
+        {
+            get { return _options; }
         }
     }
 }

@@ -47,8 +47,8 @@ namespace ITI.S3.MicroZoo
         {
             Vector target = bird.Position.Sub( _position );
             Vector direction = target.Mul( 1.0 / target.Magnitude );
-            Vector move = direction.Mul( 0.01 );
-            _position = _position.Add( move );
+            _position = MathHelpers.MoveTo( _position, direction, _context.Options.CatSpeed );
+            _position = MathHelpers.Limit( _position, -1.0, 1.0 );
         }
 
         Bird GetClosestBird()
