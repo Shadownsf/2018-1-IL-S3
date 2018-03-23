@@ -64,5 +64,26 @@ namespace ITI.Collections.Tests
             sut.Remove( 3 );
             Assert.That( sut.Count, Is.EqualTo( 3 ) );
         }
+
+        [Test]
+        public void insert_item()
+        {
+            ArrayListString sut = new ArrayListString();
+            sut.Add( "a" );
+            sut.Add( "b" );
+            sut.Add( "c" );
+
+            sut.InsertAt( 0, "d" );
+            sut.InsertAt( 4, "e" );
+            sut.InsertAt( 2, "f" );
+
+            Assert.That( sut.Count, Is.EqualTo( 6 ) );
+            Assert.That( sut.GetAt( 0 ), Is.EqualTo( "d" ) );
+            Assert.That( sut.GetAt( 1 ), Is.EqualTo( "a" ) );
+            Assert.That( sut.GetAt( 2 ), Is.EqualTo( "f" ) );
+            Assert.That( sut.GetAt( 3 ), Is.EqualTo( "b" ) );
+            Assert.That( sut.GetAt( 4 ), Is.EqualTo( "c" ) );
+            Assert.That( sut.GetAt( 5 ), Is.EqualTo( "e" ) );
+        }
     }
 }

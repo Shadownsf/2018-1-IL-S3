@@ -41,5 +41,10 @@ namespace ITI.Collections
             for( int i = 0; i < _count - index - 1; i++ ) _values[ index + i ] = _values[ index + i + 1 ];
             _count--;
         }
+
+        public void InsertAt( int index, string s )
+        {
+            throw new NotImplementedException();
+        }
     }
 }
