@@ -14,6 +14,7 @@ namespace ITI.Collections
 
         public void Add( string s )
         {
+            if( _count >= _values.Length ) Resize();
             _values[ _count ] = s;
             _count++;
         }
@@ -26,6 +27,13 @@ namespace ITI.Collections
         public string GetAt( int index )
         {
             return _values[ index ];
+        }
+
+        void Resize()
+        {
+            string[] newValues = new string[ _values.Length * 2 ];
+            for( int i = 0; i < _values.Length; i++ ) newValues[ i ] = _values[ i ];
+            _values = newValues;
         }
     }
 }
