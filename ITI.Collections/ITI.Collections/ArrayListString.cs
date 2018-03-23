@@ -35,5 +35,10 @@ namespace ITI.Collections
             for( int i = 0; i < _values.Length; i++ ) newValues[ i ] = _values[ i ];
             _values = newValues;
         }
+
+        public void Remove( int index )
+        {
+            throw new NotImplementedException();
+        }
     }
 }

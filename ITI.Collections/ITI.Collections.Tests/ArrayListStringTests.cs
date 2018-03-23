@@ -41,5 +41,28 @@ namespace ITI.Collections.Tests
             Assert.That( sut.Count, Is.EqualTo( Count ) );
             for( int i = 0; i < Count; i++ ) Assert.That( sut.GetAt( i ), Is.EqualTo( string.Format( "Test-{0}", i ) ) );
         }
+
+        [Test]
+        public void remove_items()
+        {
+            ArrayListString sut = new ArrayListString();
+            sut.Add( "a" );
+            sut.Add( "b" );
+            sut.Add( "c" );
+            sut.Add( "d" );
+            sut.Add( "e" );
+            sut.Add( "f" );
+
+            sut.Remove( 2 );
+            Assert.That( sut.Count, Is.EqualTo( 5 ) );
+            Assert.That( sut.GetAt( 2 ), Is.EqualTo( "d" ) );
+
+            sut.Remove( 0 );
+            Assert.That( sut.Count, Is.EqualTo( 4 ) );
+            Assert.That( sut.GetAt( 0 ), Is.EqualTo( "b" ) );
+
+            sut.Remove( 3 );
+            Assert.That( sut.Count, Is.EqualTo( 3 ) );
+        }
     }
 }
