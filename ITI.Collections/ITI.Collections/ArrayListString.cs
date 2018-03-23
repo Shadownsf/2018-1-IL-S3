@@ -38,7 +38,8 @@ namespace ITI.Collections
 
         public void Remove( int index )
         {
-            throw new NotImplementedException();
+            for( int i = 0; i < _count - index - 1; i++ ) _values[ index + i ] = _values[ index + i + 1 ];
+            _count--;
         }
     }
 }
