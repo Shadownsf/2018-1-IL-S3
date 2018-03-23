@@ -32,7 +32,7 @@ namespace ITI.Collections
         void Resize()
         {
             string[] newValues = new string[ _values.Length * 2 ];
-            for( int i = 0; i < _values.Length; i++ ) newValues[ i ] = _values[ i ];
+            Copy( _values, newValues, 0, 0, _values.Length );
             _values = newValues;
         }
 
@@ -44,7 +44,31 @@ namespace ITI.Collections
 
         public void InsertAt( int index, string s )
         {
-            throw new NotImplementedException();
+            string[] dest;
+            if( _count >= _values.Length )
+            {
+                dest = new string[ _values.Length * 2 ];
+                Copy( _values, dest, 0, 0, index );
+            }
+            else
+            {
+                dest = _values;
+            }
+
+            Copy( _values, dest, index, 1, _values.Length - index );
+
+            if( _count >= _values.Length ) _values = dest;
+
+            _values[ index ] = s;
+            _count++;
+        }
+
+        void Copy( string[] src, string[] dest, int start, int offset, int length )
+        {
+            for( int i = 0; i < length; i++ )
+            {
+                dest[ start + length - 1 - i + offset ] = src[ start + length - 1 - i ];
+            }
         }
     }
 }
