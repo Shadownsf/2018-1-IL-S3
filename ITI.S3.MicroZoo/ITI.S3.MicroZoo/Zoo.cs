@@ -74,6 +74,11 @@ namespace ITI.S3.MicroZoo
             _birds.Add( newName, bird );
         }
 
+        internal void OnDie( Bird bird )
+        {
+            _birds.Remove( bird.Name );
+        }
+
         internal double GetNextRandomDouble( double min, double max )
         {
             return _random.NextDouble() * ( max - min ) + min;

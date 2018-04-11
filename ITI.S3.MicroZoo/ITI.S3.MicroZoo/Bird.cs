@@ -10,6 +10,7 @@ namespace ITI.S3.MicroZoo
         bool _isAlive;
         bool _isFlying;
         Vector _direction;
+        float _stamina;
 
         internal Bird( Zoo context, string name )
         {
@@ -19,6 +20,7 @@ namespace ITI.S3.MicroZoo
             _isAlive = true;
             _isFlying = true;
             _direction = GetRandomDirection();
+            _stamina = 1.0f;
         }
 
         Vector GetRandomDirection()
@@ -48,9 +50,27 @@ namespace ITI.S3.MicroZoo
 
         internal void Update()
         {
-            _position = MathHelpers.MoveTo( _position, _direction, _context.Options.BirdSpeed );
-            _position = MathHelpers.Limit( _position, -1.0, 1.0 );
-            UpdateDirection();
+            if( _isFlying )
+            {
+                _position = MathHelpers.MoveTo( _position, _direction, _context.Options.BirdSpeed );
+                _position = MathHelpers.Limit( _position, -1.0, 1.0 );
+                UpdateDirection();
+                _stamina -= _context.Options.ExhaustionRate;
+                _stamina = MathHelpers.Limit( _stamina, 0.0f, 1.0f );
+                if( _stamina == 0.0f ) _isFlying = false;
+            }
+            else
+            {
+                _stamina += _context.Options.ExhaustionRate;
+                _stamina = MathHelpers.Limit( _stamina, 0.0f, 1.0f );
+                if( _stamina == 1.0f ) _isFlying = true;
+            }
+        }
+
+        internal void Kill()
+        {
+            _context.OnDie( this );
+            _isAlive = false;
         }
 
         void UpdateDirection()
@@ -66,5 +86,7 @@ namespace ITI.S3.MicroZoo
         }
 
         internal Vector Position => _position;
+
+        public bool IsFlying => _isFlying;
     }
 }
