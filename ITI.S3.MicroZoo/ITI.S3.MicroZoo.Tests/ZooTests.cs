@@ -9,7 +9,7 @@ namespace ITI.S3.MicroZoo.Tests
         [Test]
         public void create_some_birds()
         {
-            Zoo sut = new Zoo();
+            Zoo sut = new Zoo( new FakeMailer() );
 
             Bird jean = sut.CreateBird( "Jean" );
             Bird pierre = sut.CreateBird( "Pierre" );
@@ -23,7 +23,7 @@ namespace ITI.S3.MicroZoo.Tests
         [Test]
         public void find_bird_by_name()
         {
-            Zoo sut = new Zoo();
+            Zoo sut = new Zoo( new FakeMailer() );
             Bird jean = sut.CreateBird( "Jean" );
             Bird pierre = sut.CreateBird( "Pierre" );
             Bird titi = sut.CreateBird( "Titi" );
@@ -36,7 +36,7 @@ namespace ITI.S3.MicroZoo.Tests
         [Test]
         public void create_some_cats()
         {
-            Zoo sut = new Zoo();
+            Zoo sut = new Zoo( new FakeMailer() );
 
             Cat robert = sut.CreateCat( "Robert" );
             Cat marie = sut.CreateCat( "Marie" );
@@ -50,7 +50,7 @@ namespace ITI.S3.MicroZoo.Tests
         [Test]
         public void find_cat_by_name()
         {
-            Zoo sut = new Zoo();
+            Zoo sut = new Zoo( new FakeMailer() );
             Cat robert = sut.CreateCat( "Robert" );
             Cat marie = sut.CreateCat( "Marie" );
             Cat denis = sut.CreateCat( "Denis" );
@@ -63,7 +63,7 @@ namespace ITI.S3.MicroZoo.Tests
         [Test]
         public void rename_animals()
         {
-            Zoo sut = new Zoo();
+            Zoo sut = new Zoo( new FakeMailer() );
             Cat cat1 = sut.CreateCat( "Robert" );
             Cat cat2 = sut.CreateCat( "Marie" );
             Bird bird1 = sut.CreateBird( "Pierre" );

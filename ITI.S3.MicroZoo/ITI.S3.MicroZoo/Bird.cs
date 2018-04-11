@@ -1,6 +1,4 @@
 ﻿using System;
-using MailKit.Net.Smtp;
-using MimeKit;
 
 namespace ITI.S3.MicroZoo
 {
@@ -74,34 +72,7 @@ namespace ITI.S3.MicroZoo
             _context.OnDie( this );
             _isAlive = false;
 
-            SendMail();
-        }
-
-        void SendMail()
-        {
-            var message = new MimeMessage();
-            message.From.Add( new MailboxAddress( "<recipient name>", "<recipient email>" ) );
-            message.To.Add( new MailboxAddress( "<to name>", "to email" ) );
-            message.Subject = "A bird is dead";
-
-            message.Body = new TextPart( "plain" )
-            {
-                Text = string.Format( "{0} is dead.", _name )
-            };
-
-            using( var client = new SmtpClient() )
-            {
-                // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-                client.ServerCertificateValidationCallback = ( s, c, h, e ) => true;
-
-                client.Connect( "<host>", 465, true );
-
-                // Note: only needed if the SMTP server requires authentication
-                client.Authenticate( "<username>", "<password>" );
-
-                client.Send( message );
-                client.Disconnect( true );
-            }
+            _context.Mailer.SendMail( "A bird is dead", string.Format( "{0} is dead.", _name ) );
         }
 
         void UpdateDirection()

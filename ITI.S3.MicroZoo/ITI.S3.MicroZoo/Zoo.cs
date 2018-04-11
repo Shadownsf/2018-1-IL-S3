@@ -9,6 +9,7 @@ namespace ITI.S3.MicroZoo
         readonly Dictionary<string, Cat> _cats;
         readonly Random _random;
         readonly ZooOptions _options;
+        readonly IMailer _mailer;
 
         internal List<Bird> Birds
         {
@@ -21,17 +22,28 @@ namespace ITI.S3.MicroZoo
         }
 
         public Zoo()
-            : this( null )
+            : this( null, null )
         {
         }
 
         public Zoo( ZooOptions options )
+            : this( options, null )
+        {
+        }
+
+        public Zoo( IMailer mailer )
+            : this( null, mailer )
+        {
+        }
+
+        public Zoo( ZooOptions options, IMailer mailer )
         {
             _birds = new Dictionary<string, Bird>();
             _cats = new Dictionary<string, Cat>();
             _random = new Random();
             // _options = options != null ? options : new ZooOptions();
             _options = options ?? new ZooOptions();
+            _mailer = mailer ?? new Mailer();
         }
 
         public Bird CreateBird( string name )
@@ -100,6 +112,11 @@ namespace ITI.S3.MicroZoo
         public ZooOptions Options
         {
             get { return _options; }
+        }
+
+        internal IMailer Mailer
+        {
+            get { return _mailer; }
         }
     }
 }
