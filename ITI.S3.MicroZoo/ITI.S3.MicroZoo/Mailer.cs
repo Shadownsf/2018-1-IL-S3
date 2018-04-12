@@ -9,7 +9,7 @@ namespace ITI.S3.MicroZoo
         {
             var message = new MimeMessage();
             message.From.Add( new MailboxAddress( "<recipient name>", "<recipient email>" ) );
-            message.To.Add( new MailboxAddress( "<to name>", "to email" ) );
+            message.To.Add( new MailboxAddress( "<to name>", "<to email>" ) );
             message.Subject = subject;
 
             message.Body = new TextPart( "plain" )

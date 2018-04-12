@@ -5,8 +5,7 @@ namespace ITI.S3.MicroZoo
 {
     public class Zoo
     {
-        readonly Dictionary<string, Bird> _birds;
-        readonly Dictionary<string, Cat> _cats;
+        readonly Dictionary<string, Animal> _animals;
         readonly Random _random;
         readonly ZooOptions _options;
         readonly IMailer _mailer;
@@ -16,7 +15,11 @@ namespace ITI.S3.MicroZoo
             get
             {
                 List<Bird> birds = new List<Bird>();
-                foreach( Bird bird in _birds.Values ) birds.Add( bird );
+                foreach( Animal animal in _animals.Values )
+                {
+                    Bird bird = animal as Bird;
+                    if( bird != null ) birds.Add( bird );
+                }
                 return birds;
             }
         }
@@ -38,8 +41,7 @@ namespace ITI.S3.MicroZoo
 
         public Zoo( ZooOptions options, IMailer mailer )
         {
-            _birds = new Dictionary<string, Bird>();
-            _cats = new Dictionary<string, Cat>();
+            _animals = new Dictionary<string, Animal>();
             _random = new Random();
             // _options = options != null ? options : new ZooOptions();
             _options = options ?? new ZooOptions();
@@ -49,46 +51,44 @@ namespace ITI.S3.MicroZoo
         public Bird CreateBird( string name )
         {
             Bird bird = new Bird( this, name );
-            _birds.Add( name, bird );
+            _animals.Add( name, bird );
             return bird;
         }
 
         public Bird FindBird( string name )
         {
-            Bird bird;
-            if( !_birds.TryGetValue( name, out bird ) ) throw new ArgumentException( "Unknown bird.", nameof( name ) );
-            return bird;
+            return FindAnimal<Bird>( name );
         }
 
         public Cat CreateCat( string name )
         {
             Cat cat = new Cat( this, name );
-            _cats.Add( name, cat );
+            _animals.Add( name, cat );
             return cat;
         }
 
         public Cat FindCat( string name )
         {
-            Cat cat;
-            if( !_cats.TryGetValue( name, out cat ) ) throw new ArgumentException( "Unknown cat.", nameof( name ) );
-            return cat;
+            return FindAnimal<Cat>( name );
         }
 
-        internal void OnRename( Cat cat, string newName )
+        T FindAnimal<T>( string name ) where T : Animal
         {
-            _cats.Remove( cat.Name );
-            _cats.Add( newName, cat );
+            Animal animal;
+            if( !_animals.TryGetValue( name, out animal ) ) throw new ArgumentException( "Unknown animal.", nameof( name ) );
+            if( !( animal is T ) ) throw new ArgumentException( "Unknown animal.", nameof( name ) );
+            return ( T )animal;
         }
 
-        internal void OnRename( Bird bird, string newName )
+        internal void OnRename( Animal animal, string newName )
         {
-            _birds.Remove( bird.Name );
-            _birds.Add( newName, bird );
+            _animals.Remove( animal.Name );
+            _animals.Add( newName, animal );
         }
 
-        internal void OnDie( Bird bird )
+        internal void OnDie( Animal animal )
         {
-            _birds.Remove( bird.Name );
+            _animals.Remove( animal.Name );
         }
 
         internal double GetNextRandomDouble( double min, double max )
@@ -105,8 +105,9 @@ namespace ITI.S3.MicroZoo
 
         public void Update()
         {
-            foreach( Cat cat in _cats.Values ) cat.Update();
-            foreach( Bird bird in _birds.Values ) bird.Update();
+            List<Animal> animals = new List<Animal>();
+            foreach( Animal a in _animals.Values ) animals.Add( a );
+            foreach( Animal a in animals ) a.Update();
         }
 
         public ZooOptions Options
